@@ -23,6 +23,7 @@ public class PlatformLoader : MonoBehaviour
         }
         lastPlaform = newPlatform;
         score = 0;
+        PlayerPrefs.SetInt("CurrentRunScore",score);
     }
 
     // Update is called once per frame
