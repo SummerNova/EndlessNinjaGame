@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
         else {
             isDashing = false;
             partSys.Stop();
+            anim.SetBool("isJumping",false);
         }
         
         if (dashReset&&!isDashing){

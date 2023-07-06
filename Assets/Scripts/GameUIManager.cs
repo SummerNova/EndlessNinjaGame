@@ -58,6 +58,7 @@ public class GameUIManager : MonoBehaviour
 
     public void MainMenu(){
         Time.timeScale = 1.0f;
+        SaveScore();
         PlayerPrefs.SetInt("CurrentRunScore",0);
         PlayerPrefs.Save();
         SceneManager.LoadScene("Main Menu");
@@ -65,11 +66,13 @@ public class GameUIManager : MonoBehaviour
 
     public void SaveScore(){
         Leaderboard.Record(RunName.text, PlayerPrefs.GetInt("CurrentRunScore"));
+        
     }
 
     public void toggleLeaderboard(){
         deathPanel.SetActive(false);
         leaderboardPanel.SetActive(true);
+        SaveScore();
         scores.text = "";
         for (int i = 0; i < Leaderboard.EntryCount; ++i) {
             var entry = Leaderboard.GetEntry(i);
