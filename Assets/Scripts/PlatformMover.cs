@@ -17,9 +17,6 @@ public class PlatformMover : MonoBehaviour
     {   
         speed = platLoad.speed;
 
-        if(transform.position.x<-50){
-            Destroy(gameObject);
-        }
         transform.Translate((new Vector3(-1*speed, 0,0))*Time.deltaTime);
     }
 }
