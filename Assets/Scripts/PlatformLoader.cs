@@ -11,7 +11,6 @@ public class PlatformLoader : MonoBehaviour
     public float speed;
     GameObject newPlatform;
     GameObject lastPlaform;
-    public int score;
 
     // Start is called before the first frame update
     void Start()
@@ -22,22 +21,21 @@ public class PlatformLoader : MonoBehaviour
             newPlatform.transform.parent = gameObject.transform;
         }
         lastPlaform = newPlatform;
-        score = 0;
-        PlayerPrefs.SetInt("CurrentRunScore",score);
+        PlayerPrefs.SetInt("CurrentRunScore",0);
+        PlayerPrefs.SetFloat("Speed",speed);
     }
 
     // Update is called once per frame
     void Update()
     {
         speed += Time.deltaTime*acceleration;
+        PlayerPrefs.SetFloat("Speed",speed);
     }
 
     void OnCollisionEnter2D(Collision2D col){
         lastPlaform = newPlatform;
         newPlatform = Instantiate(platformRef[rng.Next(0,5)], new Vector3(lastPlaform.transform.position.x+7+speed,NextFloat(-2f, -4f) ,0), Quaternion.identity);
         newPlatform.transform.parent = gameObject.transform;
-        score += 1;
-        PlayerPrefs.SetInt("CurrentRunScore",score);
     }
 
     static float NextFloat(float min, float max){
