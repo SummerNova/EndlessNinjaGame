@@ -11,6 +11,7 @@ public class PlatformLoader : MonoBehaviour
     public float speed;
     GameObject newPlatform;
     GameObject lastPlaform;
+    public int score;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class PlatformLoader : MonoBehaviour
             newPlatform.transform.parent = gameObject.transform;
         }
         lastPlaform = newPlatform;
+        score = 0;
+        PlayerPrefs.SetInt("CurrentRunScore",score);
     }
 
     // Update is called once per frame
@@ -33,7 +36,8 @@ public class PlatformLoader : MonoBehaviour
         lastPlaform = newPlatform;
         newPlatform = Instantiate(platformRef[rng.Next(0,5)], new Vector3(lastPlaform.transform.position.x+7+speed,NextFloat(-2f, -4f) ,0), Quaternion.identity);
         newPlatform.transform.parent = gameObject.transform;
-
+        score += 1;
+        PlayerPrefs.SetInt("CurrentRunScore",score);
     }
 
     static float NextFloat(float min, float max){

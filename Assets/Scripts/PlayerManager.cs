@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject playerRef;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = Instantiate(playerRef, new Vector3(0,0,0), Quaternion.identity);
+        player = Instantiate(playerRef, new Vector3(0,0,0), Quaternion.identity);
         player.transform.parent = gameObject.transform;
     }
 
