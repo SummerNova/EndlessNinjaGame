@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public bool dashReset = true;
     public ParticleSystem partSys;
 
+    public PlayerAudio audioControl;
+
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && dashTimer > 0 && !dashReset){
             Debug.Log("happened");
+            audioControl.Dash();
             isDashing = true;
             dashTimer -= Time.deltaTime;
             RB.velocity = new Vector2(dashSTR,0);
@@ -76,7 +79,7 @@ public class PlayerController : MonoBehaviour
             RB.velocity = new Vector2(horizontal*speed,RB.velocity.y);
 
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded()){
-                
+                audioControl.Jump();
                 isJumping = true;
                 jumpTimeCounter = jumptimer;
                 RB.velocity = new Vector2(RB.velocity.x,jumpSTR);
