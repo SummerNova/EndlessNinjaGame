@@ -6,6 +6,7 @@ public class PlatformMover : MonoBehaviour
 { 
     public PlatformLoader platLoad;
     public float speed;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +19,9 @@ public class PlatformMover : MonoBehaviour
         speed = platLoad.speed;
 
         transform.Translate((new Vector3(-1*speed, 0,0))*Time.deltaTime);
+
+        if (transform.position.x < -50){
+            platLoad.POP(gameObject);
+        }
     }
 }
