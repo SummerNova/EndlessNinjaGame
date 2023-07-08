@@ -32,10 +32,13 @@ public class PlatformLoader : MonoBehaviour
         PlayerPrefs.SetFloat("Speed",speed);
     }
 
-    void OnCollisionEnter2D(Collision2D col){
-        lastPlaform = newPlatform;
-        newPlatform = Instantiate(platformRef[rng.Next(0,5)], new Vector3(lastPlaform.transform.position.x+7+speed,NextFloat(-2f, -4f) ,0), Quaternion.identity);
-        newPlatform.transform.parent = gameObject.transform;
+    public void POP(GameObject gaymObject){
+        if (transform.childCount<13){
+            lastPlaform = newPlatform;
+            newPlatform = Instantiate(platformRef[rng.Next(0,6)], new Vector3(lastPlaform.transform.position.x+7+speed*1.3f,NextFloat(-2f, -4f) ,0), Quaternion.identity);
+            newPlatform.transform.parent = gameObject.transform;
+            Destroy(gaymObject);
+        }
     }
 
     static float NextFloat(float min, float max){
