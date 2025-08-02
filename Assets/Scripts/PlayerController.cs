@@ -45,14 +45,14 @@ public class PlayerController : MonoBehaviour
             audioControl.Dash();
             isDashing = true;
             dashTimer -= Time.deltaTime;
-            RB.velocity = new Vector2(dashSTR,0);
+            RB.linearVelocity = new Vector2(dashSTR,0);
             dashReset = true;
             partSys.Play();
 
         }
         else if (dashTimer > 0 && isDashing){
             dashTimer -= Time.deltaTime;
-            RB.velocity = new Vector2(dashSTR,0);
+            RB.linearVelocity = new Vector2(dashSTR,0);
         }
         else {
             isDashing = false;
@@ -77,13 +77,13 @@ public class PlayerController : MonoBehaviour
             else{
                 anim.SetBool("isrunning",true);
             }
-            RB.velocity = new Vector2(horizontal*speed,RB.velocity.y);
+            RB.linearVelocity = new Vector2(horizontal*speed,RB.linearVelocity.y);
 
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded()){
                 audioControl.Jump();
                 isJumping = true;
                 jumpTimeCounter = jumptimer;
-                RB.velocity = new Vector2(RB.velocity.x,jumpSTR);
+                RB.linearVelocity = new Vector2(RB.linearVelocity.x,jumpSTR);
                 anim.SetBool("isJumping",true);
                 
                 
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W)){
                 if (jumpTimeCounter > 0 && isJumping){
-                    RB.velocity = new Vector2(RB.velocity.x,jumpSTR);
+                    RB.linearVelocity = new Vector2(RB.linearVelocity.x,jumpSTR);
                     jumpTimeCounter -= Time.deltaTime;
                 }
                 else {
