@@ -16,12 +16,12 @@ public class PlatformMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        speed = platLoad.speed;
+        // speed = platLoad.speed;
 
-        transform.Translate((new Vector3(-1*speed, 0,0))*Time.deltaTime);
+        // transform.Translate((new Vector3(-1*speed, 0,0))*Time.deltaTime);
 
-        if (transform.position.x < -50){
-            platLoad.POP(gameObject);
-        }
+        // if (transform.position.x < -50){
+        //     platLoad.POP(gameObject);
+        // }
     }
 }
